@@ -1,9 +1,9 @@
 export const nav = [
-  ['gioi-thieu', 'Giới thiệu'],
-  ['du-an', 'Dự án'],
-  ['ky-nang', 'Kỹ năng'],
-  ['thanh-tich', 'Thành tích'],
-  ['lien-he', 'Liên hệ'],
+  ['gioi-thieu', 'About'],
+  ['du-an', 'Projects'],
+  ['ky-nang', 'Skills'],
+  ['thanh-tich', 'Achievements'],
+  ['lien-he', 'Contact'],
 ]
 
 export const github = 'https://github.com/Dwan123s'

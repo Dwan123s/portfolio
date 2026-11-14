@@ -5,18 +5,21 @@ import '@fontsource-variable/inter'
 import '@fontsource-variable/playfair-display'
 import './styles.css'
 import { Certificates } from './Certificates'
-import { Hero, Navigation } from './Hero'
+import { Hero, Navigation, Specialty } from './Hero'
 import { Projects } from './Projects'
 import { email, focusAreas, github, process, skills } from './content'
 import { SectionTitle, Tags } from './ui'
 
 function About() {
   const icons = [Layers3, Sparkles, Code2, Workflow]
-  return <section className="section-band" id="gioi-thieu">
+  return <section className="section-band about-band" id="gioi-thieu">
     <div className="page-width about-layout">
-      <div>
-        <SectionTitle label="Giới thiệu">Từ kiến thức đến<br className="hidden lg:block" /> sản phẩm thực tế.</SectionTitle>
-        <p className="about-copy" data-reveal>Tôi học Kỹ thuật phần mềm tại Đại học FPT – Đà Nẵng và định hướng trở thành Full-stack Developer. Tôi xây dựng ứng dụng web từ giao diện đến API, cơ sở dữ liệu và tích hợp AI.</p>
+      <div className="about-title">
+        <SectionTitle label="ABOUT"><span lang="en">About Me</span></SectionTitle>
+        <Specialty />
+      </div>
+      <div className="about-intro">
+        <p className="about-copy" data-reveal>Tôi là sinh viên ngành Kỹ thuật phần mềm tại Đại học FPT – Đà Nẵng, định hướng trở thành Full-stack Developer với nền tảng vững về Frontend, Backend và tích hợp AI vào các sản phẩm thực tế.</p>
         <p className="about-copy" data-reveal>Tôi quan tâm đến cách một ý tưởng trở thành sản phẩm có thể sử dụng, từ xác định nhu cầu đến triển khai và cải tiến.</p>
       </div>
       <div className="focus-list">
