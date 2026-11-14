@@ -66,6 +66,7 @@ export function Navigation() {
 
 export function Hero() {
   const scene = useRef<HTMLDivElement>(null)
+  const [galleryPaused, setGalleryPaused] = useState(false)
   return <section className="hero" id="top" aria-labelledby="hero-title" ref={scene}
     onPointerMove={(event) => {
       if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return
@@ -78,24 +79,25 @@ export function Hero() {
       scene.current?.style.removeProperty('--pointer-y')
     }}>
     <div className="hero-background" aria-hidden="true" />
-    <div className="hero-gallery" aria-hidden="true">
-      <div className="hero-track">
-        <div className="hero-tile hero-tile-edge-left" />
-        <div className="hero-tile hero-tile-planora">
-          <span className="tile-brand">PLANORA</span>
-          <div className="tile-schedule"><span>Hôm nay</span><div /><div /><div /></div>
-        </div>
-        <div className="hero-tile hero-tile-cookora"><img src="/media/cookora.webp" alt="" width="1182" height="780" /></div>
-        <div className="hero-tile hero-tile-studio"><img src="/media/studio.webp" alt="" width="1182" height="780" /></div>
-        <div className="hero-tile hero-tile-code">
-          <code><b>var</b> proposal = nora<br />&nbsp;&nbsp;.Suggest(request);<br /><b>if</b> (schedule.CanApply(proposal))<br />&nbsp;&nbsp;Preview(proposal);</code>
-        </div>
-        <div className="hero-tile hero-tile-diagram"><img src="/media/planora-diagram.webp" alt="" width="440" height="360" /></div>
-        <div className="hero-tile hero-tile-dotnet">.NET</div>
+    <div className="hero-gallery" aria-hidden="true" data-paused={galleryPaused}>
+      <div className="hero-reel">
+        {[0, 1].map((copy) => <div className="hero-track" key={copy}>
+          <div className="hero-tile hero-tile-planora">
+            <span className="tile-brand">PLANORA</span>
+            <div className="tile-schedule"><span>Hôm nay</span><div /><div /><div /></div>
+          </div>
+          <div className="hero-tile hero-tile-cookora"><img src="/media/cookora.webp" alt="" width="1182" height="780" /></div>
+          <div className="hero-tile hero-tile-studio"><img src="/media/studio.webp" alt="" width="1182" height="780" /></div>
+          <div className="hero-tile hero-tile-code">
+            <code><b>var</b> proposal = nora<br />&nbsp;&nbsp;.Suggest(request);<br /><b>if</b> (schedule.CanApply(proposal))<br />&nbsp;&nbsp;Preview(proposal);</code>
+          </div>
+          <div className="hero-tile hero-tile-diagram"><img src="/media/planora-diagram.webp" alt="" width="440" height="360" /></div>
+          <div className="hero-tile hero-tile-dotnet">.NET</div>
+        </div>)}
       </div>
     </div>
     <picture className="hero-portrait">
-      <img src="/media/hero-portrait.webp" alt="Chân dung trong ảnh tham chiếu portfolio" width="1275" height="1000" fetchPriority="high" />
+      <img src="/media/hero-portrait-quan.webp" alt="Chân dung Phan Lê Nhật Quân" width="900" height="1350" fetchPriority="high" />
     </picture>
     <div className="page-width hero-layout">
       <div className="hero-copy">
@@ -114,6 +116,11 @@ export function Hero() {
         <i aria-hidden="true">Dwan</i>
       </blockquote>
       <a href="#gioi-thieu" className="hero-scroll" lang="en"><Mouse size={33} strokeWidth={1.3} aria-hidden="true" /> Scroll to explore</a>
+      <button type="button" className="hero-gallery-toggle motion-toggle"
+        aria-label={galleryPaused ? 'Tiếp tục chuyển động dải dự án' : 'Tạm dừng chuyển động dải dự án'}
+        onClick={() => setGalleryPaused((paused) => !paused)}>
+        {galleryPaused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+      </button>
     </div>
   </section>
 }

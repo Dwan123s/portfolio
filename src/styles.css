@@ -69,7 +69,14 @@ button, summary { cursor: pointer; }
 .shine::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(115deg, transparent 35%, #fff9 50%, transparent 65%); translate: -130% 0; }
 .shine:is(:hover,:focus-visible)::after { animation: shine 580ms ease-out; }
 .hero-gallery { @apply pointer-events-none absolute inset-x-0; top: 12%; }
-.hero-track { @apply relative; height: clamp(105px, 8.8vw, 175px); perspective: 1200px; }
+.hero-reel { display: flex; width: 200%; }
+.hero-track { @apply relative; flex: 0 0 50%; height: clamp(105px, 8.8vw, 175px); perspective: 1200px; }
+.hero-gallery-toggle { @apply absolute bottom-4 right-0 z-10 bg-graphite/75; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-reel { animation: hero-reel-slide var(--reel-duration, 42s) linear 800ms infinite; }
+  .hero-gallery[data-paused="true"] .hero-reel { animation-play-state: paused; }
+}
+@keyframes hero-reel-slide { to { transform: translateX(-50%); } }
 .hero-tile {
   @apply absolute overflow-hidden rounded-lg border border-[#74929b66] bg-panel;
   height: 88%;
@@ -80,7 +87,6 @@ button, summary { cursor: pointer; }
   filter: brightness(.83) saturate(.78);
 }
 .hero-tile img { @apply h-full w-full object-cover object-top; }
-.hero-tile-edge-left { left: -8%; top: 0; width: 11%; transform: skewY(6deg); background: linear-gradient(125deg,#0c222b,#090e13); }
 .hero-tile-planora { left: 4%; top: 10%; width: 12.5%; transform: skewY(6deg); --delay: 55ms; background: linear-gradient(135deg,#191b38,#101725); }
 .tile-brand { @apply block border-b border-white/10 px-3 py-1.5 text-[.64rem] font-semibold tracking-wider text-[#ced1ff]; }
 .tile-schedule { @apply grid gap-1.5 px-3 py-1 text-[.55rem] text-[#c3bfff]; }
@@ -97,11 +103,11 @@ button, summary { cursor: pointer; }
 .hero-tile-dotnet { @apply grid place-items-center font-sans font-bold tracking-tight text-[#78d8ee]; left: 87.5%; top: 6%; width: 15%; height: 92%; transform: skewY(-7deg); --delay: 330ms; font-size: clamp(1rem, 3vw, 3rem); background: linear-gradient(150deg,#192c37,#081923); }
 .hero-portrait {
   @apply pointer-events-none absolute bottom-0;
-  left: 26.5%;
-  height: 99%;
-  translate: calc(var(--pointer-x, 0px) * .35) 0;
+  left: 54%;
+  height: 104%;
+  translate: calc(-50% + var(--pointer-x, 0px) * .35) 0;
   transition: translate 250ms ease-out;
-  mask-image: linear-gradient(black 82%, #000c 99%);
+  mask-image: linear-gradient(black 73%, transparent 100%);
 }
 .hero-portrait img { display: block; height: 100%; width: auto; max-width: none; animation: portrait-in 650ms cubic-bezier(.22,.61,.36,1) both; }
 .hero-quote { @apply absolute right-0 hidden font-display italic lg:block; top: 46%; width: 18.5%; font-size: clamp(1.05rem, 1.44vw, 1.8rem); line-height: 1.34; }
@@ -231,7 +237,7 @@ button, summary { cursor: pointer; }
   .header-meta { display: none; }
 }
 @media (max-width: 1023px) {
-  .hero-portrait { left: 32%; height: 90%; }
+  .hero-portrait { left: 62%; height: 94%; }
   .hero-layout { min-height: 570px; }
   .hero-copy { top: 42%; }
   .hero-description { max-width: 36ch; }
@@ -249,18 +255,19 @@ button, summary { cursor: pointer; }
   .hero-description { @apply mt-3 pl-3; }
   .hero-actions { @apply mt-5 gap-2; }
   .hero-actions .button { min-width: 0; }
-  .hero-portrait { left: 50%; height: clamp(305px, 78vw, 430px); translate: -50% 0; mask-image: linear-gradient(black 74%, #0009 99%); }
-  .hero-gallery { top: auto; bottom: clamp(205px, 53vw, 295px); }
+  .hero-portrait { left: 50%; height: clamp(345px, 88vw, 465px); translate: -50% 0; }
+  .hero-gallery { top: auto; bottom: clamp(205px, 53vw, 295px); --reel-duration: 26s; }
   .hero-track { height: clamp(65px, 18vw, 110px); }
   .hero-tile-cookora { left: 2%; width: 29%; }
   .hero-tile-studio { left: 66%; width: 30%; transform: skewY(-5deg); }
   .hero-tile-planora { left: 30%; width: 35%; }
-  .hero-tile-edge-left, .hero-tile-code, .hero-tile-diagram, .hero-tile-dotnet { display: none; }
+  .hero-tile-code, .hero-tile-diagram, .hero-tile-dotnet { display: none; }
   .hero-scroll { white-space: nowrap; }
   .hero-scroll svg { width: 24px; height: 24px; }
   .hero-scroll::after { height: 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hero-gallery-toggle, .hero-track + .hero-track { display: none; }
   .hero-background, .hero-tile, .hero-portrait img, .hero-scroll svg, .specialty-label, .reveal-in, .shine::after { animation: none !important; }
   .hero-tile { translate: none; transition: none; }
   .reading-progress { display: none; }
