@@ -185,15 +185,26 @@ button, summary { cursor: pointer; }
 .achievement-list svg { @apply mt-1 shrink-0 text-cyan; }
 .achievement-list p { @apply mt-1 text-sm text-mist; }
 .certificate-grid { @apply grid gap-3 sm:grid-cols-2; }
-.certificate { @apply flex min-w-0 flex-col items-start justify-between gap-3 rounded-lg border border-line bg-panel/60 p-4; }
+.certificate { @apply flex min-w-0 flex-col rounded-lg border border-line bg-panel/60; }
+.certificate-thumbnail { @apply relative grid w-full place-items-center rounded-t-lg border-b border-line bg-graphite/45 p-3 transition-colors hover:bg-panel focus-visible:z-10; aspect-ratio: 1.44; }
+.certificate-thumbnail img { @apply absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] object-contain; }
+.certificate-expand { @apply absolute bottom-2 right-2 grid size-8 place-items-center rounded-md border border-line bg-graphite/90 text-paper; }
+.certificate-info { @apply flex flex-1 flex-col items-start p-4; }
 .certificate h4 { @apply break-words text-sm font-semibold leading-snug; }
 .certificate .text-link { @apply min-h-8; }
 .course-details { @apply mt-4 rounded-lg border border-line; }
 .course-details summary { @apply flex min-h-12 items-center justify-between gap-3 px-4 py-2 text-sm font-semibold hover:text-cyan; list-style: none; }
 .course-details summary::-webkit-details-marker { display: none; }
 .course-details[open] summary svg { rotate: 180deg; }
-.certificate-compact { @apply flex-row flex-wrap items-center gap-x-4 gap-y-0 rounded-none border-0 border-t bg-transparent; }
-.certificate-compact > div { flex: 1 1 240px; }
+.course-details > .certificate-grid { @apply border-t border-line p-3; }
+.certificate-dialog { @apply fixed inset-0 m-auto max-h-[92dvh] w-[min(94vw,950px)] max-w-none overflow-auto rounded-xl border border-line bg-panel p-0 text-paper shadow-2xl; }
+.certificate-dialog[open] { animation: certificate-appear 180ms ease-out both; }
+.certificate-dialog::backdrop { background: #030609ce; }
+.certificate-dialog-header { @apply sticky top-0 flex items-start justify-between gap-4 border-b border-line bg-panel p-3 sm:px-5; }
+.certificate-close { @apply grid size-11 shrink-0 place-items-center rounded-lg border border-line text-paper hover:text-cyan; }
+.certificate-full-image { @apply mx-auto block max-h-[76dvh] w-full object-contain p-3 sm:p-5; }
+@keyframes certificate-appear { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0; } }
+@media (prefers-reduced-motion: reduce) { .certificate-dialog[open] { animation: none; } }
 .process-list { @apply mt-9 grid border-l border-line sm:grid-cols-2 lg:grid-cols-4 lg:border-l-0 lg:border-t; }
 .process-list li { @apply relative px-6 py-4 lg:pl-0 lg:pr-5 lg:pt-7; }
 .process-list li::before { content: ''; @apply absolute -left-[4px] top-6 size-[7px] rounded-full bg-cyan lg:left-0 lg:top-[-4px]; }
