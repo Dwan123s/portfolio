@@ -97,7 +97,7 @@ export function Hero() {
       </div>
     </div>
     <picture className="hero-portrait">
-      <img src="/media/hero-portrait-quan.webp" alt="Chân dung Phan Lê Nhật Quân" width="900" height="1350" fetchPriority="high" />
+      <img src="/media/hero-portrait-extended.webp" alt="Chân dung Phan Lê Nhật Quân" width="1280" height="994" fetchPriority="high" />
     </picture>
     <div className="page-width hero-layout">
       <div className="hero-copy">
